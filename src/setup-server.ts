@@ -114,6 +114,6 @@ export class ChattyServer {
   }
 
   private socketIOConnection(io: Server): void {
-    log.info(`The socket io needs to be establised for ${process.pid}`);
+    log.info(`The socket io needs to be establised for ${io.sockets}`);
   }
 }
