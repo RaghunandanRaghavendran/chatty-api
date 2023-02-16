@@ -1,8 +1,12 @@
+import { authRoutes } from './features/auth/routes/authRoutes';
 import { Application } from 'express';
+
+const BASE_PATH = '/api/v1';
 
 //This needs to be in the setup server
 export default (app: Application) => {
   const routes = () => {
-    routes();
+    app.use(BASE_PATH, authRoutes.routes());
   };
+  routes();
 };

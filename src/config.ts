@@ -29,7 +29,6 @@ class Config {
     this.CLOUDINARY_NAME = process.env.CLOUDINARY_NAME || '';
     this.CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY || '';
     this.CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET || '';
-
   }
 
   public createLogger(name: string): bunyan {
@@ -44,7 +43,7 @@ class Config {
     }
   }
 
-  public cloudinaryConfig():void {
+  public cloudinaryConfig(): void {
     cloudinary.v2.config({
       cloud_name: this.CLOUDINARY_NAME,
       api_key: this.CLOUDINARY_API_KEY,
