@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { config } from './config';
 import Logger from 'bunyan';
+import { redisConnection } from './shared/services/redis/redis.connection';
 
 const log: Logger = config.createLogger('database');
 // We are going to export as a default method and hence we can import as any name we want in the app.ts
@@ -11,6 +12,7 @@ export default () => {
       .connect(`${config.DATABASE_URL}`)
       .then(() => {
         log.info('Successfully connected to database.');
+        redisConnection.connect(); // Redis connection created lately was referenced here
       })
       .catch((error) => {
         log.error('Error connecting to the database', error);

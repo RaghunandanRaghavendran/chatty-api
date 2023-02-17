@@ -16,7 +16,6 @@ export class SignUp {
   public async create(req: Request, res: Response): Promise<void> {
     const { username, email, password, avatarColor, avatarImage } = req.body;
 
-    // We need to check if user name exists or not to avoid inserting duplicates
     const checkIfUserExist: IAuthDocument = await authService.getUserByUsernameOrEmail(username, email);
     if (checkIfUserExist) {
       throw new BadRequestError('User name or email is already taken.');
@@ -43,7 +42,7 @@ export class SignUp {
       throw new BadRequestError('File upload: Error occured. Try again');
     }
 
-    res.status(HTTP_STATUS.CREATED).json({message: 'User created successfully', authData});
+    res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', authData });
   }
 
   private signupData(data: ISignUpData): IAuthDocument {
