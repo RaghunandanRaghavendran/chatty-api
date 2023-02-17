@@ -83,13 +83,12 @@ export class UserCache extends BaseCache {
     const dataToSave: string[] = [...firstList, ...secondList, ...thirdList];
 
     try {
-      if(!this.client.isOpen){
+      if (!this.client.isOpen) {
         await this.client.connect();
       }
-      await this.client.zAdd('user', {score: parseInt(userUId,10), value: `${key}`});
+      await this.client.zAdd('user', { score: parseInt(userUId, 10), value: `${key}` });
       await this.client.HSET(`users:${key}`, dataToSave);
-
-    }catch(error){
+    } catch (error) {
       logger.error(error);
       throw new ServerError('Server error. Try again.');
     }
