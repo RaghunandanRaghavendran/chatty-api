@@ -7,11 +7,12 @@ import { authService } from './../../../shared/services/db/auth.service';
 import { ObjectId } from 'mongodb';
 import { Request, Response } from 'express';
 import { joiValidation } from 'src/shared/globals/decorators/joi-validation.decorators';
-import { signupSchema } from '../schemes/signup';
+import { signupSchema } from '../schemas/signup';
 import { IAuthDocument } from '../interfaces/auth.interface';
 import { BadRequestError } from 'src/shared/globals/helpers/error-handler';
 import { upload } from 'src/shared/globals/helpers/cloudinary-upload';
 import { IUserDocument } from 'src/features/user/interfaces/user.interface';
+import { config } from 'src/config';
 
 const userCache: UserCache = new UserCache();
 
@@ -44,7 +45,7 @@ export class SignUp {
 
     // Add to redis cache
     const userDataForCache: IUserDocument = SignUp.prototype.userData(authData, userObjectId);
-    userDataForCache.profilePicture = `https://res.cloudinary.com/fastrobot/image/upload/v${result.version}/${userObjectId}`;
+    userDataForCache.profilePicture = `https://res.cloudinary.com/${config.CLOUDINARY_NAME}/image/upload/v${result.version}/${userObjectId}`;
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
     res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', authData });
