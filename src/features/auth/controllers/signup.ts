@@ -1,3 +1,4 @@
+import { authQueue } from './../../../shared/services/queues/auth.queue';
 import { UserCache } from './../../../shared/services/redis/user.cache';
 import HTTP_STATUS from 'http-status-codes';
 import { UploadApiResponse } from 'cloudinary';
@@ -13,6 +14,9 @@ import { BadRequestError } from 'src/shared/globals/helpers/error-handler';
 import { upload } from 'src/shared/globals/helpers/cloudinary-upload';
 import { IUserDocument } from 'src/features/user/interfaces/user.interface';
 import { config } from 'src/config';
+import { omit } from 'lodash';
+import { userQueue } from 'src/shared/services/queues/user.queue';
+import JWT from 'jsonwebtoken';
 
 const userCache: UserCache = new UserCache();
 
@@ -48,10 +52,18 @@ export class SignUp {
     userDataForCache.profilePicture = `https://res.cloudinary.com/${config.CLOUDINARY_NAME}/image/upload/v${result.version}/${userObjectId}`;
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
-    res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', authData });
+    //Add to database
+    omit(userDataForCache, ['uId', 'username', 'email', 'avatarColor', 'password']);
+    authQueue.addAuthUserJob('addAuthUserToDB', {value: userDataForCache});
+    userQueue.addUserJob('addUserToDB', {value: userDataForCache});
+
+    const userJwt:string = SignUp.prototype.signToken(authData,userObjectId);
+    req.session = {jwt: userJwt};
+
+    res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', user: userDataForCache, token: userJwt });
   }
 
-  private signupData(data: ISignUpData): IAuthDocument {
+   private signupData(data: ISignUpData): IAuthDocument {
     const { _id, username, email, uId, password, avatarColor } = data;
     return {
       _id,
@@ -99,5 +111,18 @@ export class SignUp {
         youtube: ''
       }
     } as unknown as IUserDocument;
+  }
+
+  private signToken(data: IAuthDocument, userObjectId: ObjectId): string {
+    return JWT.sign(
+      {
+        userId: userObjectId,
+        uId: data.uId,
+        email: data.email,
+        username: data.username,
+        avatarColor: data.avatarColor
+      },
+      config.JWT_TOKEN!
+    );
   }
 }

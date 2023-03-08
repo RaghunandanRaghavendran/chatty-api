@@ -5,10 +5,6 @@ export class ExtensionMetod {
       .split(' ')
       .map((value: string) => `${value.charAt(0).toUpperCase()}${value.slice(1).toLowerCase()}`)
       .join(' ');
-    // Ex: John Lewis
-    // valueString = john lewis
-    //string[] = value[0] = JOHN  and value[1] = lewis
-    // return JOHN lewis as per this method
   }
 
   static lowercase(str: string): string {
