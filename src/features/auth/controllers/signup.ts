@@ -54,16 +54,16 @@ export class SignUp {
 
     //Add to database
     omit(userDataForCache, ['uId', 'username', 'email', 'avatarColor', 'password']);
-    authQueue.addAuthUserJob('addAuthUserToDB', {value: userDataForCache});
-    userQueue.addUserJob('addUserToDB', {value: userDataForCache});
+    authQueue.addAuthUserJob('addAuthUserToDB', { value: userDataForCache });
+    userQueue.addUserJob('addUserToDB', { value: userDataForCache });
 
-    const userJwt:string = SignUp.prototype.signToken(authData,userObjectId);
-    req.session = {jwt: userJwt};
+    const userJwt: string = SignUp.prototype.signToken(authData, userObjectId);
+    req.session = { jwt: userJwt };
 
     res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', user: userDataForCache, token: userJwt });
   }
 
-   private signupData(data: ISignUpData): IAuthDocument {
+  private signupData(data: ISignUpData): IAuthDocument {
     const { _id, username, email, uId, password, avatarColor } = data;
     return {
       _id,
