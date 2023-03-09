@@ -4,7 +4,6 @@ import { config } from 'src/config';
 import { AuthPayload } from 'src/features/auth/interfaces/auth.interface';
 import { UnAuthorized } from './error-handler';
 
-
 export class AuthMiddleware {
   public verifyUser(req: Request, _res: Response, next: NextFunction): void {
     if (!req.session?.jwt) {
