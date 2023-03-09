@@ -31,3 +31,9 @@ POST {{baseUrl}}/{{urlPath}}/logout
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
+
+###
+POST {{baseUrl}}/{{urlPath}}/currentuser
+Content-Type: application/json
+Accept: application/json
+withCredentials: true

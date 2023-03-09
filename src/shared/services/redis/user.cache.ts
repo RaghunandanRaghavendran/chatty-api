@@ -1,3 +1,4 @@
+import { ExtensionMetod } from './../../globals/helpers/extention-methods';
 import { ServerError } from './../../globals/helpers/error-handler';
 import Logger from 'bunyan';
 import { config } from 'src/config';
@@ -88,6 +89,36 @@ export class UserCache extends BaseCache {
       }
       await this.client.zAdd('user', { score: parseInt(userUId, 10), value: `${key}` });
       await this.client.HSET(`users:${key}`, dataToSave);
+    } catch (error) {
+      logger.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
+
+  public async getUserFromCache(userId: string): Promise<IUserDocument | null> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+
+      const response: IUserDocument = (await this.client.HGETALL(`users:${userId}`)) as unknown as IUserDocument;
+      response.createdAt = new Date(ExtensionMetod.parseJson(`${response.createdAt}`));
+      response.postsCount = ExtensionMetod.parseJson(`${response.postsCount}`);
+      response.blocked = ExtensionMetod.parseJson(`${response.blocked}`);
+      response.blockedBy = ExtensionMetod.parseJson(`${response.blockedBy}`);
+      response.notifications = ExtensionMetod.parseJson(`${response.notifications}`);
+      response.social = ExtensionMetod.parseJson(`${response.social}`);
+      response.followersCount = ExtensionMetod.parseJson(`${response.followersCount}`);
+      response.followingCount = ExtensionMetod.parseJson(`${response.followingCount}`);
+      response.bgImageId = ExtensionMetod.parseJson(`${response.bgImageId}`);
+      response.bgImageVersion = ExtensionMetod.parseJson(`${response.bgImageVersion}`);
+      response.profilePicture = ExtensionMetod.parseJson(`${response.profilePicture}`);
+      response.work = ExtensionMetod.parseJson(`${response.work}`);
+      response.school = ExtensionMetod.parseJson(`${response.school}`);
+      response.location = ExtensionMetod.parseJson(`${response.location}`);
+      response.quote = ExtensionMetod.parseJson(`${response.quote}`);
+
+      return response;
     } catch (error) {
       logger.error(error);
       throw new ServerError('Server error. Try again.');
