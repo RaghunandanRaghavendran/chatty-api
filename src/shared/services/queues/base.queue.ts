@@ -1,3 +1,4 @@
+import { IEmailJob } from './../../../features/user/interfaces/user.interface';
 import { IAuthJob } from './../../../features/auth/interfaces/auth.interface';
 import Logger from 'bunyan';
 import Queue, { Job } from 'bull';
@@ -6,7 +7,7 @@ import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { ExpressAdapter } from '@bull-board/express';
 import { config } from 'src/config';
 
-type IBaseJobData = IAuthJob;
+type IBaseJobData = IAuthJob | IEmailJob;
 
 let bullAdapters: BullAdapter[] = [];
 
