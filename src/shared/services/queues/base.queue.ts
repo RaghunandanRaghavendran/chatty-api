@@ -1,11 +1,12 @@
-import { IEmailJob } from './../../../features/user/interfaces/user.interface';
-import { IAuthJob } from './../../../features/auth/interfaces/auth.interface';
+
 import Logger from 'bunyan';
 import Queue, { Job } from 'bull';
 import { createBullBoard } from '@bull-board/api';
 import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { ExpressAdapter } from '@bull-board/express';
-import { config } from 'src/config';
+import { IAuthJob } from '@auth/interfaces/auth.interface';
+import { IEmailJob } from '@user/interfaces/user.interface';
+import { config } from '@root/config';
 
 type IBaseJobData = IAuthJob | IEmailJob;
 

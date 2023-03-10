@@ -1,6 +1,7 @@
-import { ExtensionMetod } from './../../globals/helpers/extention-methods';
-import { IAuthDocument } from 'src/features/auth/interfaces/auth.interface';
-import { AuthModel } from 'src/features/auth/models/auth.schema';
+import { IAuthDocument } from '@auth/interfaces/auth.interface';
+import { AuthModel } from '@auth/models/auth.schema';
+import { ExtensionMetod } from '@global/helpers/extention-methods';
+
 
 class AuthService {
   public async getUserByUsernameOrEmail(username: string, email: string): Promise<IAuthDocument> {

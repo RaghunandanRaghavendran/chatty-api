@@ -1,14 +1,14 @@
-import { userService } from './../../../shared/services/db/user.service';
-import { IUserDocument } from 'src/features/user/interfaces/user.interface';
 import HTTP_STATUS from 'http-status-codes';
 import JWT from 'jsonwebtoken';
-import { BadRequestError } from './../../../shared/globals/helpers/error-handler';
-import { authService } from './../../../shared/services/db/auth.service';
-import { IAuthDocument } from 'src/features/auth/interfaces/auth.interface';
 import { Request, Response } from 'express';
-import { config } from 'src/config';
-import { joiValidation } from 'src/shared/globals/decorators/joi-validation.decorators';
-import { loginSchema } from '../schemas/signin';
+import { joiValidation } from '@global/decorators/joi-validation.decorators';
+import { loginSchema } from '@auth/schemas/signin';
+import { IAuthDocument } from '@auth/interfaces/auth.interface';
+import { authService } from '@service/db/auth.service';
+import { BadRequestError } from '@global/helpers/error-handler';
+import { IUserDocument } from '@user/interfaces/user.interface';
+import { userService } from '@service/db/user.service';
+import { config } from '@root/config';
 //#region Email testing logic
 // import moment from 'moment';
 // import publicIP from 'ip';

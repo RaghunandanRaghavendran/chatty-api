@@ -1,7 +1,8 @@
-import { Password } from './../controllers/password';
-import { SignOut } from './../controllers/logout';
-import { SignIn } from './../controllers/signin';
-import { SignUp } from './../controllers/signup';
+
+import { SignOut } from '@auth/controllers/logout';
+import { Password } from '@auth/controllers/password';
+import { SignIn } from '@auth/controllers/signin';
+import { SignUp } from '@auth/controllers/signup';
 import express, { Router } from 'express';
 
 class AuthRoute {

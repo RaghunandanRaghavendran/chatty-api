@@ -1,9 +1,10 @@
-import { config } from 'src/config';
+
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import Logger from 'bunyan';
 import sendGrid from '@sendgrid/mail';
-import { BadRequestError } from 'src/shared/globals/helpers/error-handler';
+import { config } from '@root/config';
+import { BadRequestError } from '@global/helpers/error-handler';
 
 interface IMailOptions {
   from: string;

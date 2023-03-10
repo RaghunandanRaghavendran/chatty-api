@@ -1,22 +1,21 @@
-import { authQueue } from './../../../shared/services/queues/auth.queue';
-import { UserCache } from './../../../shared/services/redis/user.cache';
 import HTTP_STATUS from 'http-status-codes';
 import { UploadApiResponse } from 'cloudinary';
-import { ExtensionMetod } from './../../../shared/globals/helpers/extention-methods';
-import { ISignUpData } from './../interfaces/auth.interface';
-import { authService } from './../../../shared/services/db/auth.service';
 import { ObjectId } from 'mongodb';
 import { Request, Response } from 'express';
-import { joiValidation } from 'src/shared/globals/decorators/joi-validation.decorators';
-import { signupSchema } from '../schemas/signup';
-import { IAuthDocument } from '../interfaces/auth.interface';
-import { BadRequestError } from 'src/shared/globals/helpers/error-handler';
-import { upload } from 'src/shared/globals/helpers/cloudinary-upload';
-import { IUserDocument } from 'src/features/user/interfaces/user.interface';
-import { config } from 'src/config';
 import { omit } from 'lodash';
-import { userQueue } from 'src/shared/services/queues/user.queue';
 import JWT from 'jsonwebtoken';
+import { UserCache } from '@service/redis/user.cache';
+import { joiValidation } from '@global/decorators/joi-validation.decorators';
+import { signupSchema } from '@auth/schemas/signup';
+import { IAuthDocument, ISignUpData } from '@auth/interfaces/auth.interface';
+import { authService } from '@service/db/auth.service';
+import { BadRequestError } from '@global/helpers/error-handler';
+import { ExtensionMetod } from '@global/helpers/extention-methods';
+import { upload } from '@global/helpers/cloudinary-upload';
+import { IUserDocument } from '@user/interfaces/user.interface';
+import { config } from '@root/config';
+import { authQueue } from '@service/queues/auth.queue';
+import { userQueue } from '@service/queues/user.queue';
 
 const userCache: UserCache = new UserCache();
 

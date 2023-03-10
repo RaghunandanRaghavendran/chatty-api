@@ -1,6 +1,7 @@
 import fs from 'fs';
 import ejs from 'ejs';
-import { IResetPasswordParams } from 'src/features/user/interfaces/user.interface';
+import { IResetPasswordParams } from '@user/interfaces/user.interface';
+
 
 
 class ResetPasswordTemplate {

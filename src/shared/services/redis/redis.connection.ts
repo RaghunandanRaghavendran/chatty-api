@@ -1,5 +1,5 @@
+import { config } from '@root/config';
 import Logger from 'bunyan';
-import { config } from 'src/config';
 import { BaseCache } from './base.cache';
 
 const logger: Logger = config.createLogger('redisConnection');

@@ -1,6 +1,7 @@
+import { IUserDocument } from '@user/interfaces/user.interface';
+import { UserModel } from '@user/models/user.schema';
 import mongoose from 'mongoose';
-import { IUserDocument } from 'src/features/user/interfaces/user.interface';
-import { UserModel } from 'src/features/user/models/user.schema';
+
 
 class UserService {
   public async addUserData(data: IUserDocument): Promise<void> {
