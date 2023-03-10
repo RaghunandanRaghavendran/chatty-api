@@ -2,7 +2,6 @@ import { IAuthDocument } from '@auth/interfaces/auth.interface';
 import { AuthModel } from '@auth/models/auth.schema';
 import { ExtensionMetod } from '@global/helpers/extention-methods';
 
-
 class AuthService {
   public async getUserByUsernameOrEmail(username: string, email: string): Promise<IAuthDocument> {
     const query = {
@@ -44,7 +43,6 @@ class AuthService {
     }).exec()) as IAuthDocument;
     return user;
   }
-
 }
 
 export const authService: AuthService = new AuthService();

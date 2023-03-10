@@ -4,7 +4,6 @@ import { IUserDocument } from '@user/interfaces/user.interface';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 
-
 const userCache: UserCache = new UserCache();
 
 export class CurrentUser {

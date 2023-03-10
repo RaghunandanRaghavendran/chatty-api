@@ -4,7 +4,6 @@ import { Request, Response, NextFunction } from 'express';
 import JWT from 'jsonwebtoken';
 import { UnAuthorized } from './error-handler';
 
-
 export class AuthMiddleware {
   public verifyUser(req: Request, _res: Response, next: NextFunction): void {
     if (!req.session?.jwt) {

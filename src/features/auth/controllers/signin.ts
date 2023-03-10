@@ -77,8 +77,7 @@ export class SignIn {
     // };
     // const template: string = resetPasswordTemplate.passwordResetConfirmationTemplate(templateParams);
     // emailQueue.addEmailJob('forgotPasswordEmail', { template, receiverEmail: 'conor31@ethereal.email', subject: 'Password reset confirmation'});
- //#endregion
+    //#endregion
     response.status(HTTP_STATUS.OK).json({ message: 'user successfully loggedIn', user: userDocument, token: userJwt });
   }
 }
-

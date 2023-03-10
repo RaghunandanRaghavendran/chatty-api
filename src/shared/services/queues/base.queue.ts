@@ -1,4 +1,3 @@
-
 import Logger from 'bunyan';
 import Queue, { Job } from 'bull';
 import { createBullBoard } from '@bull-board/api';

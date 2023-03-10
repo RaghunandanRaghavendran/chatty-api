@@ -1,4 +1,3 @@
-
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import Logger from 'bunyan';
@@ -17,7 +16,7 @@ const log: Logger = config.createLogger('mailOptions');
 sendGrid.setApiKey(config.SENDGRID_API_KEY!);
 
 class MailTransport {
- public async sendEmail(receiverEmail: string, subject: string, body: string): Promise<void> {
+  public async sendEmail(receiverEmail: string, subject: string, body: string): Promise<void> {
     if (config.NODE_ENV === 'test' || config.NODE_ENV === 'development') {
       this.developmentEmailSender(receiverEmail, subject, body);
     } else {

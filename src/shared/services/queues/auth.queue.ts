@@ -2,7 +2,6 @@ import { IAuthJob } from '@auth/interfaces/auth.interface';
 import { authWorker } from '@worker/auth.worker';
 import { BaseQueue } from './base.queue';
 
-
 class AuthQueue extends BaseQueue {
   constructor() {
     super('auth');

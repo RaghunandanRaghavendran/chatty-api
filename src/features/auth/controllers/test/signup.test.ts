@@ -7,7 +7,6 @@ import { authMock, authMockRequest, authMockResponse } from '@root/mocks/auth.mo
 import { authService } from '@service/db/auth.service';
 import { UserCache } from '@service/redis/user.cache';
 
-
 jest.mock('@service/queues/base.queue');
 jest.mock('@service/redis/user.cache');
 jest.mock('@service/queues/user.queue');
@@ -15,7 +14,6 @@ jest.mock('@service/queues/auth.queue');
 jest.mock('@global/helpers/cloudinary-upload');
 
 describe('SignUp', () => {
-
   it('should throw an error if username is not available', () => {
     const req: Request = authMockRequest(
       {},
@@ -35,4 +33,3 @@ describe('SignUp', () => {
     });
   });
 });
-
