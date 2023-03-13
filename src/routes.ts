@@ -1,3 +1,4 @@
+import { postRoutes } from './features/post/routes/post.route';
 import { authRoutes } from '@auth/routes/authRoutes';
 import { currentUserRoute } from '@auth/routes/currentuserRoutes';
 import { authMiddleware } from '@global/helpers/auth-middleware';
@@ -14,6 +15,7 @@ export default (app: Application) => {
     app.use(BASE_PATH, authRoutes.logout());
 
     app.use(BASE_PATH, authMiddleware.verifyUser, currentUserRoute.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, postRoutes.routes());
   };
   routes();
 };
