@@ -1,8 +1,8 @@
-import { ExtensionMetod } from './../../globals/helpers/extention-methods';
-import { ServerError } from './../../globals/helpers/error-handler';
+import { ServerError } from '@global/helpers/error-handler';
+import { ExtensionMetod } from '@global/helpers/extention-methods';
+import { config } from '@root/config';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import Logger from 'bunyan';
-import { config } from 'src/config';
-import { IUserDocument } from 'src/features/user/interfaces/user.interface';
 import { BaseCache } from './base.cache';
 
 const logger: Logger = config.createLogger('userCache');
