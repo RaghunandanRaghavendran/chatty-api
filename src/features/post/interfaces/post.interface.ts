@@ -2,13 +2,13 @@ import { ObjectId } from 'mongodb';
 import mongoose, { Document } from 'mongoose';
 
 // move this to reactions interface later
-interface IReactions {
-  like:number;
-  love:number;
-  haha:number;
-  wow:number;
-  sad:number;
-  angry:number;
+export interface IReactions {
+  like: number;
+  love: number;
+  haha: number;
+  wow: number;
+  sad: number;
+  angry: number;
 }
 
 export interface IPostDocument extends Document {
