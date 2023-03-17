@@ -37,7 +37,6 @@ class PostService {
     const updatePost: UpdateQuery<IPostDocument> = PostModel.updateOne({ _id: postId }, { $set: updatedPost });
     await Promise.all([updatePost]);
   }
-
 }
 
 export const postService: PostService = new PostService();

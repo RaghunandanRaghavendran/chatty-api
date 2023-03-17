@@ -204,21 +204,21 @@ export class PostCache extends BaseCache {
   public async updatePostInCache(key: string, updatedPost: IPostDocument): Promise<IPostDocument> {
     const { post, bgColor, feelings, privacy, gifUrl, imgVersion, imgId, profilePicture } = updatedPost;
     const dataToSave = {
-      'post': `${post}`,
-      'bgColor': `${bgColor}`,
-      'feelings': `${feelings}`,
-      'privacy': `${privacy}`,
-      'gifUrl': `${gifUrl}`,
-      'profilePicture': `${profilePicture}`,
-      'imgVersion': `${imgVersion}`,
-      'imgId': `${imgId}`
+      post: `${post}`,
+      bgColor: `${bgColor}`,
+      feelings: `${feelings}`,
+      privacy: `${privacy}`,
+      gifUrl: `${gifUrl}`,
+      profilePicture: `${profilePicture}`,
+      imgVersion: `${imgVersion}`,
+      imgId: `${imgId}`
     };
 
     try {
       if (!this.client.isOpen) {
         await this.client.connect();
       }
-      for(const [itemKey, itemValue] of Object.entries(dataToSave)) {
+      for (const [itemKey, itemValue] of Object.entries(dataToSave)) {
         await this.client.HSET(`posts:${key}`, `${itemKey}`, `${itemValue}`);
       }
       const multi: ReturnType<typeof this.client.multi> = this.client.multi();
