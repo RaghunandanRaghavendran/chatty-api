@@ -35,7 +35,7 @@ export class Create {
       imgVersion: '',
       imgId: '',
       createdAt: new Date(),
-      reactions: { like: 0, love: 0, haha: 0, sad: 0, wow: 0, angry: 0 }
+      reactions: { like: 0, love: 0, happy: 0, sad: 0, wow: 0, angry: 0 }
     } as IPostDocument;
 
     socketIOPostObject.emit('add post', createdPost);
@@ -76,7 +76,7 @@ export class Create {
       imgVersion: result.version.toString(),
       imgId: result.public_id,
       createdAt: new Date(),
-      reactions: { like: 0, love: 0, haha: 0, sad: 0, wow: 0, angry: 0 }
+      reactions: { like: 0, love: 0, happy: 0, sad: 0, wow: 0, angry: 0 }
     } as IPostDocument;
 
     socketIOPostObject.emit('add post', createdPost);

@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+###
+POST {{baseUrl}}/{{urlPath}}/post/reaction
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+# type - like | love | wow | happy | sad | angry
+# previousReaction (if it exist) - like | love | wow | happy | sad | angry
+# postReactions - increment new reaction by 1 and decrement previous reaction by 1
+
+{
+  "userTo": "6416e4384bb5a4073285b67f",
+  "postId": "6418721d1c72b86e605a9e4d",
+  "type": "wow",
+  "previousReaction": "",
+  "postReactions": {"like": 0,"love": 0,"happy": 0,"sad": 0,"wow": 1,"angry": 0},
+  "profilePicture": "https://res.cloudinary.com/fastrobot/image/upload/v1679221817/6416e4384bb5a4073285b67f"
+}
+
+###
+DELETE  {{baseUrl}}/{{urlPath}}/post/reaction/6418721d1c72b86e605a9e4d/like/{"like":0,"love":0,"happy":0,"sad":0,"wow":0,"angry":0}
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
