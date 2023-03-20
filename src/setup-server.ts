@@ -14,6 +14,7 @@ import { createAdapter } from '@socket.io/redis-adapter';
 import applicationRoutes from './routes';
 import Logger from 'bunyan';
 import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
+import { SocketIOPostHandler } from '@socket/post';
 
 const SERVER_PORT = 5000;
 const log: Logger = config.createLogger('server');
@@ -114,6 +115,7 @@ export class ChattyServer {
   }
 
   private socketIOConnection(io: Server): void {
-    log.info(`The socket io needs to be establised for ${io.sockets}`);
+    const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
+    postSocketHandler.listen();
   }
 }
