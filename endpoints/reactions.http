@@ -26,3 +26,20 @@ Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
+###
+GET {{baseUrl}}/{{urlPath}}/post/reactions/6418721d1c72b86e605a9e4d
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/single/reaction/username/FastRobot/6418721d1c72b86e605a9e4d
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/reactions/username/FastRobot
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
