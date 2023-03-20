@@ -90,7 +90,7 @@ export const updatedPostWithImage = {
   feelings: 'wow',
   privacy: 'Private',
   gifUrl: '',
-  imgId: '',
-  imgVersion: '',
+  imgId: '1231',
+  imgVersion: '123123',
   image: ''
 };

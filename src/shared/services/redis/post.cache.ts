@@ -14,6 +14,7 @@ export class PostCache extends BaseCache {
   constructor() {
     super('postCache');
   }
+
   public async savePostToCache(data: ISavePostToCache): Promise<void> {
     const { key, currentUserId, uId, createdPost } = data;
     const {
@@ -57,17 +58,17 @@ export class PostCache extends BaseCache {
     try {
       if (!this.client.isOpen) {
         await this.client.connect();
-
-        const postCount: string[] = await this.client.HMGET(`users:${currentUserId}`, 'postsCount');
-        const multi: ReturnType<typeof this.client.multi> = this.client.multi();
-        multi.ZADD('post', { score: parseInt(uId, 10), value: `${key}` });
-        for (const [itemKey, itemValue] of Object.entries(dataToSave)) {
-          multi.HSET(`posts:${key}`, `${itemKey}`, `${itemValue}`);
-        }
-        const count: number = parseInt(postCount[0], 10) + 1;
-        multi.HSET(`users:${currentUserId}`, ['postsCount', count]);
-        multi.exec();
       }
+
+      const postCount: string[] = await this.client.HMGET(`users:${currentUserId}`, 'postsCount');
+      const multi: ReturnType<typeof this.client.multi> = this.client.multi();
+      await this.client.ZADD('post', { score: parseInt(uId, 10), value: `${key}` });
+      for (const [itemKey, itemValue] of Object.entries(dataToSave)) {
+        multi.HSET(`posts:${key}`, `${itemKey}`, `${itemValue}`);
+      }
+      const count: number = parseInt(postCount[0], 10) + 1;
+      multi.HSET(`users:${currentUserId}`, 'postsCount', count);
+      multi.exec();
     } catch (error) {
       log.error(error);
       throw new ServerError('Server error. Try again.');
