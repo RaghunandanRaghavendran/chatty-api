@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ExtensionMetod } from '@global/helpers/extention-methods';
 import { IPostDocument } from '@post/interfaces/post.interface';
 import { PostModel } from '@post/models/post.schema';
