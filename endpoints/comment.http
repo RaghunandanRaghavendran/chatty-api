@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/comments/64186e941e3c90d5957a9b27
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/commentsnames/64186e941e3c90d5957a9b27
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/single/comment/64186e941e3c90d5957a9b27/6419b34e44c9c321e0061822
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+POST {{baseUrl}}/{{urlPath}}/post/comment
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "userTo": "6416e4384bb5a4073285b67f",
+  "postId": "64186e941e3c90d5957a9b27",
+  "comment": "What's up my boy? Why are you not listening to me?",
+  "profilePicture": "https://res.cloudinary.com/fastrobot/image/upload/v1678295907/6408c3611585f8798982c190"
+}

@@ -1,3 +1,4 @@
+import { commentRoutes } from './features/comments/routes/commentRoutes';
 import { postRoutes } from './features/post/routes/post.route';
 import { authRoutes } from '@auth/routes/authRoutes';
 import { currentUserRoute } from '@auth/routes/currentuserRoutes';
@@ -18,6 +19,7 @@ export default (app: Application) => {
     app.use(BASE_PATH, authMiddleware.verifyUser, currentUserRoute.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, postRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, reactionRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, commentRoutes.routes());
   };
   routes();
 };
