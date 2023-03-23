@@ -125,6 +125,5 @@ export class ChattyServer {
 
     const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
     notificationSocketHandler.listen(io);
-
   }
 }

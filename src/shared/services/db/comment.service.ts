@@ -52,8 +52,8 @@ class CommentService {
       };
       const template: string = notificationTemplate.notificationMessageTemplate(templateParams);
       emailQueue.addEmailJob('commentsEmail', { receiverEmail: response[2].email!, template, subject: 'Post notification' });
+    }
   }
-}
 
   public async getPostComments(query: IQueryComment, sort: Record<string, 1 | -1>): Promise<ICommentDocument[]> {
     const comments: ICommentDocument[] = await CommentsModel.aggregate([{ $match: query }, { $sort: sort }]);
