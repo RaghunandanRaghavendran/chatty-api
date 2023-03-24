@@ -18,6 +18,8 @@ import Logger from 'bunyan';
 import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
 import { SocketIOPostHandler } from '@socket/post';
 import { SocketIONotificationHandler } from '@socket/notification';
+import { SocketIOChatHandler } from '@socket/chat';
+import { SocketIOUserHandler } from '@socket/user';
 
 const SERVER_PORT = 5000;
 const log: Logger = config.createLogger('server');
@@ -127,5 +129,11 @@ export class ChattyServer {
 
     const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
     imageSocketHandler.listen(io);
+
+    const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
+    chatSocketHandler.listen();
+
+    const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
+    userSocketHandler.listen();
   }
 }
