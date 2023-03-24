@@ -1,3 +1,4 @@
+import { SocketIOImageHandler } from './shared/sockets/image';
 import { SocketIOFollowerHandler } from './shared/sockets/follower';
 import { Application, json, urlencoded, Response, Request, NextFunction } from 'express';
 import http from 'http';
@@ -74,7 +75,6 @@ export class ChattyServer {
     });
 
     app.use((error: IErrorResponse, _req: Request, res: Response, next: NextFunction) => {
-      //console.log(error);
       log.error(error);
       if (error instanceof CustomError) {
         return res.status(error.statusCode).json(error.serializeError());
@@ -90,7 +90,6 @@ export class ChattyServer {
       this.startHttpServer(httpServer);
       this.socketIOConnection(socketIO);
     } catch (error) {
-      //console.log(error);
       log.error(error);
     }
   }
@@ -125,5 +124,8 @@ export class ChattyServer {
 
     const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
     notificationSocketHandler.listen(io);
+
+    const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
+    imageSocketHandler.listen(io);
   }
 }

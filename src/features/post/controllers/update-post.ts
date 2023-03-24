@@ -1,3 +1,4 @@
+import { imageQueue } from './../../../shared/services/queues/image.queue';
 import { Request, Response } from 'express';
 import { PostCache } from '@service/redis/post.cache';
 import HTTP_STATUS from 'http-status-codes';
@@ -74,6 +75,12 @@ export class Update {
     socketIOPostObject.emit('update post', postUpdated, 'posts');
     postQueue.addPostJob('updatePostInDB', { key: postId, value: postUpdated });
     // call image queue to add image to Database
+
+    imageQueue.addImageJob('addImageToDB', {
+      key: `${req.currentUser!.userId}`,
+      imgId: result.public_id,
+      imgVersion: result.version.toString()
+    });
 
     return result;
   }
