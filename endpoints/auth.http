@@ -22,8 +22,8 @@ Accept: application/json
 withCredentials: true
 
 {
-  "username": "Ghost",
-  "password": "RealyGhost"
+  "username": "FASTROBOT",
+  "password": "FASTROBOT"
 }
 
 ###
@@ -45,16 +45,16 @@ Accept: application/json
 withCredentials: true
 
 {
-  "email": "ghost.p@gmail.com"
+  "email": "fastrobot@gmail.com"
 }
 
 ###
-POST {{baseUrl}}/{{urlPath}}/reset-password/facb09763ad2b1b292c8c2d4f244f0418444a196
+POST {{baseUrl}}/{{urlPath}}/reset-password/cfc9da851c6ddfbe1b5a62b2fbfad634ae942272
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 {
-  "password": "RealyGhost",
-  "confirmPassword": "RealyGhost"
+  "password": "FASTROBOT",
+  "confirmPassword": "FASTROBOT"
 }

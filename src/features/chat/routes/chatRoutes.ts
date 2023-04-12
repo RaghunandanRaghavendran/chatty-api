@@ -26,7 +26,6 @@ class ChatRoutes {
       authMiddleware.checkAuthentication,
       Delete.prototype.markMessageAsDeleted
     );
-
     return this.router;
   }
 }

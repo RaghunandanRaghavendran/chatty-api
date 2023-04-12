@@ -8,7 +8,7 @@ Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/chat/message/user/<receiverId>
+GET {{baseUrl}}/{{urlPath}}/chat/message/user/6408c2ca1585f8798982c189
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -20,12 +20,12 @@ Accept: application/json
 withCredentials: true
 
 {
-  "conversationId": "",
-  "receiverId": "",
-  "receiverUsername": "",
-  "receiverAvatarColor": "",
-  "receiverProfilePicture": "<cloudinary-user-profile-picture-url>",
-  "body": "",
+  "conversationId": "6436aaf01246c3406f3abf99",
+  "receiverId": "6416e4384bb5a4073285b67f",
+  "receiverUsername": "Fastrobot",
+  "receiverAvatarColor": "green",
+  "receiverProfilePicture": "https://res.cloudinary.com/fastrobot/image/upload/v1678266074/64084ed9e0232b49b4020472",
+  "body": "Yes buddy, I read it now. The tech team resolved the issue",
   "gifUrl": "",
   "isRead": false,
   "selectedImage": ""
@@ -38,8 +38,8 @@ Accept: application/json
 withCredentials: true
 
 {
-  "userOne": "",
-  "userTwo": ""
+  "userOne": "6416e4384bb5a4073285b67f",
+  "userTwo": "64084ed9e0232b49b4020472"
 }
 
 ###
@@ -79,7 +79,7 @@ withCredentials: true
 }
 
 ###
-DELETE {{baseUrl}}/{{urlPath}}/chat/message/mark-as-deleted/<messageId>/<senderId>/<receiverId>/<type>
+DELETE {{baseUrl}}/{{urlPath}}/chat/message/mark-as-deleted/6436b0181246c3406f3abfb2/6416e4384bb5a4073285b67f/6416e4384bb5a4073285b67f/deleteForEveryone
 # For this endpoint, the type is either deleteForMe or deleteForEveryone
 Content-Type: application/json
 Accept: application/json
