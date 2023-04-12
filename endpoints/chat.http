@@ -1,0 +1,86 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+###
+GET {{baseUrl}}/{{urlPath}}/chat/message/conversation-list
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/chat/message/user/6408c2ca1585f8798982c189
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/message
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "conversationId": "6436aaf01246c3406f3abf99",
+  "receiverId": "6416e4384bb5a4073285b67f",
+  "receiverUsername": "Fastrobot",
+  "receiverAvatarColor": "green",
+  "receiverProfilePicture": "https://res.cloudinary.com/fastrobot/image/upload/v1678266074/64084ed9e0232b49b4020472",
+  "body": "Yes buddy, I read it now. The tech team resolved the issue",
+  "gifUrl": "",
+  "isRead": false,
+  "selectedImage": ""
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/message/add-chat-users
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "userOne": "6416e4384bb5a4073285b67f",
+  "userTwo": "64084ed9e0232b49b4020472"
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/message/remove-chat-users
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "userOne": "",
+  "userTwo": ""
+}
+
+###
+PUT {{baseUrl}}/{{urlPath}}/chat/message/mark-as-read
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "senderId": "",
+  "receiverId": ""
+}
+
+###
+PUT {{baseUrl}}/{{urlPath}}/chat/message/reaction
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+# For this endpoint, the type is either add or remove
+{
+  "conversationId": "",
+  "messageId": "",
+  "reaction": "",
+  "type": ""
+}
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/chat/message/mark-as-deleted/6436b0181246c3406f3abfb2/6416e4384bb5a4073285b67f/6416e4384bb5a4073285b67f/deleteForEveryone
+# For this endpoint, the type is either deleteForMe or deleteForEveryone
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
